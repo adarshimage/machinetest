@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <script src='main.js'></script>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='main.js'></script>
+</head>
+<body>
+
+    <br>
+    <br>
+
+    <center>
+
+        <a href="add_shop_details">
+            
+            <button type="button" class="btn btn-primary"> Add Shop Details</button>
+           </a>
+
+
+       
+        <a href="add_category_details">
+            <button type="button" class="btn btn-success"> Add Category Details</button>
+           </a>
+
+     
+        <a href="add_product_details">
+            <button type="button" class="btn btn-info">Add Product Details</button>
+            </a>
+    </center>
+
+
+    <br>
+    <br>
+   
+    <center>
+<h3>ADD PRODUCT DETAILS</h3>
+
+    <form action="add_product_action" method="post"  enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+
+        <table>
+
+            <tr>
+                <td>
+                    Select Shop
+                </td>
+                <td>
+                    <select class="form-control" name="shop_name">
+                        {% for i in data_shop %}
+
+                        <option value="{{i.id}}">{{i.shop_name}}</option>
+
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Select Category
+                </td>
+                <td>
+                    <select class="form-control" name="category">
+                        {% for i1 in data_category %}
+
+                        <option value="{{i1.id}}">{{i1.category}}</option>
+
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="name" required>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    Select Image
+                </td>
+                <td>
+
+                    <input class="form-control" type="file" name="pic">
+                </td>
+
+
+
+            </tr>
+
+            <tr>
+                <td>
+
+                    <input  class="btn btn-warning" type="submit" value="ADD">
+                </td>
+            </tr>
+
+        </table>
+    </form>
+
+    <center>
+
+    <br>
+
+    <h3>VIEW DETAILS</h3>
+
+    
+    <table  class="table table-bordered">
+
+        <tr>
+            <td>
+                Shop Name
+            </td>
+            <td>
+                Category
+            </td>
+            <td>
+                Product Name
+            </td>
+
+            <td>
+            Image
+            </td>
+            <td>
+                Action
+            </td>
+
+        </tr>
+
+
+        {% for i in data %}
+
+        <tr>
+            <td>
+                {{i.shop_id}}
+            </td>
+            <td>
+                {{i.cat_id}}
+            </td>
+            <td>
+
+                {{i.name}}
+            </td>
+
+            <td>
+                <img src="./media/{{i.product_image}}" style="width: 20%;">
+            </td>
+            <td>
+                <a href="delete_product?id={{i.id}}">Delete</a>
+            </td>
+
+
+        </tr>
+
+
+        {% endfor %}
+    </table>
+
+</center>
+</body>
+</html>

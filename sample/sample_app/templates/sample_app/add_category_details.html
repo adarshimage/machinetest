@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='main.js'></script>
+</head>
+<body>
+    <br>
+    <br>
+
+    <center>
+
+        <a href="add_shop_details">
+            
+            <button type="button" class="btn btn-primary"> Add Shop Details</button>
+           </a>
+
+
+       
+        <a href="add_category_details">
+            <button type="button" class="btn btn-success"> Add Category Details</button>
+           </a>
+
+     
+        <a href="add_product_details">
+            <button type="button" class="btn btn-info">Add Product Details</button>
+            </a>
+    </center>
+
+    <br>
+    <br>
+   
+    <center>
+<h3>ADD CATEGORY</h3>
+
+    <form action="add_category_details_action" method="POST">
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td>
+                    category
+                </td>
+                <td>
+                    <input  class="form-control" type="text" name="category" required>
+                </td>
+            </tr>
+          
+
+            <tr>
+                <td>
+                    <input  class="btn btn-warning" type="submit" value="ADD">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    </center>
+
+    <center>
+    <br>
+    <br>
+
+    <h3>catgory Details</h3>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>
+                Category
+            </td>
+            <td>
+                Action
+            </td>
+          
+        </tr>
+
+        {% for i in data %}
+
+
+        <tr>
+            <td>
+                {{i.category}}
+            </td>
+
+            <td>
+                <a href="delete_category?id={{i.id}}">Delete</a>
+            </td>
+           
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
